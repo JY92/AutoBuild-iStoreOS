@@ -11,7 +11,7 @@
 #
 
 # 修改openwrt登陆地址,把下面的 10.0.0.1 修改成你想要的就可以了
-sed -i 's/192.168.1.1/192.168.0.2/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.31.1/g' package/base-files/files/bin/config_generate
 
 # 修改主机名字，把 iStore OS 修改你喜欢的就行（不能纯数字或者使用中文）
 sed -i 's/OpenWrt/iStoreOS/g' package/base-files/files/bin/config_generate
@@ -34,29 +34,29 @@ function git_sparse_clone() {
 # 添加额外插件
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-aliddns
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-aliddns
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-filebrowser filebrowser
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-jellyfin luci-lib-taskd
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-jellyfin luci-lib-taskd
 
 # 加入OpenClash核心
 chmod -R a+x $GITHUB_WORKSPACE/preset-clash-core.sh
 $GITHUB_WORKSPACE/preset-clash-core.sh
 
 # 更改 Argon 主题背景
-cp -f $GITHUB_WORKSPACE/argon/img/bg1.jpg feeds/third/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
-cp -f $GITHUB_WORKSPACE/argon/img/argon.svg feeds/third/luci-theme-argon/htdocs/luci-static/argon/img/argon.svg
-cp -f $GITHUB_WORKSPACE/argon/background/background.jpg feeds/third/luci-theme-argon/htdocs/luci-static/argon/background/background.jpg
-cp -f $GITHUB_WORKSPACE/argon/favicon.ico feeds/third/luci-theme-argon/htdocs/luci-static/argon/favicon.ico
-cp -f $GITHUB_WORKSPACE/argon/icon/android-icon-192x192.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/android-icon-192x192.png
-cp -f $GITHUB_WORKSPACE/argon/icon/apple-icon-144x144.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/apple-icon-144x144.png
-cp -f $GITHUB_WORKSPACE/argon/icon/apple-icon-60x60.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/apple-icon-60x60.png
-cp -f $GITHUB_WORKSPACE/argon/icon/apple-icon-72x72.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/apple-icon-72x72.png
-cp -f $GITHUB_WORKSPACE/argon/icon/favicon-16x16.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/favicon-16x16.png
-cp -f $GITHUB_WORKSPACE/argon/icon/favicon-32x32.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/favicon-32x32.png
-cp -f $GITHUB_WORKSPACE/argon/icon/favicon-96x96.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/favicon-96x96.png
-cp -f $GITHUB_WORKSPACE/argon/icon/ms-icon-144x144.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/ms-icon-144x144.png
+#cp -f $GITHUB_WORKSPACE/argon/img/bg1.jpg feeds/third/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+#cp -f $GITHUB_WORKSPACE/argon/img/argon.svg feeds/third/luci-theme-argon/htdocs/luci-static/argon/img/argon.svg
+#cp -f $GITHUB_WORKSPACE/argon/background/background.jpg feeds/third/luci-theme-argon/htdocs/luci-static/argon/background/background.jpg
+#cp -f $GITHUB_WORKSPACE/argon/favicon.ico feeds/third/luci-theme-argon/htdocs/luci-static/argon/favicon.ico
+#cp -f $GITHUB_WORKSPACE/argon/icon/android-icon-192x192.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/android-icon-192x192.png
+#cp -f $GITHUB_WORKSPACE/argon/icon/apple-icon-144x144.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/apple-icon-144x144.png
+#cp -f $GITHUB_WORKSPACE/argon/icon/apple-icon-60x60.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/apple-icon-60x60.png
+#cp -f $GITHUB_WORKSPACE/argon/icon/apple-icon-72x72.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/apple-icon-72x72.png
+#cp -f $GITHUB_WORKSPACE/argon/icon/favicon-16x16.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/favicon-16x16.png
+#cp -f $GITHUB_WORKSPACE/argon/icon/favicon-32x32.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/favicon-32x32.png
+#cp -f $GITHUB_WORKSPACE/argon/icon/favicon-96x96.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/favicon-96x96.png
+#cp -f $GITHUB_WORKSPACE/argon/icon/ms-icon-144x144.png feeds/third/luci-theme-argon/htdocs/luci-static/argon/icon/ms-icon-144x144.png
 
 echo "
 # 额外组件
@@ -67,7 +67,7 @@ CONFIG_VMDK_IMAGES=y
 CONFIG_PACKAGE_luci-app-openclash=y
 
 # adguardhome
-CONFIG_PACKAGE_luci-app-adguardhome=y
+CONFIG_PACKAGE_luci-app-adguardhome=n
 
 # mosdns
 #CONFIG_PACKAGE_luci-app-mosdns=y
@@ -76,7 +76,7 @@ CONFIG_PACKAGE_luci-app-adguardhome=y
 CONFIG_PACKAGE_luci-app-pushbot=y
 
 # Jellyfin
-CONFIG_PACKAGE_luci-app-jellyfin=y
+CONFIG_PACKAGE_luci-app-jellyfin=n
 
 # qbittorrent
 CONFIG_PACKAGE_luci-app-qbittorrent=y
@@ -89,7 +89,7 @@ CONFIG_PACKAGE_transmission-web-control=y
 #CONFIG_PACKAGE_luci-app-uhttpd=y
 
 # 阿里DDNS
-CONFIG_PACKAGE_luci-app-aliddns=y
+CONFIG_PACKAGE_luci-app-aliddns=n
 
 # filebrowser
 CONFIG_PACKAGE_luci-app-filebrowser=y
